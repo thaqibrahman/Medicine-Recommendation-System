@@ -1,0 +1,469 @@
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CareConnect</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+       
+        <style>
+          body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Roboto', sans-serif;
+          }
+    
+          .navbar {
+            background-color: #000000;
+            padding: 20px;
+          }
+    
+          .navbar-brand img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+          }
+    
+          .navbar-nav .nav-link {
+            color: #ffffff;
+            font-size: 18px; 
+            font-weight: 500;
+            padding: 12px 20px;
+            margin-right: 15px; /* Added gap between buttons */
+            font-family: 'Poppins', sans-serif;
+          }
+    
+          .navbar-nav .nav-link:hover {
+            color: #cccccc;
+            text-decoration: none;
+          }
+    
+          .welcome-box {
+            background-color: #f7f7f7;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            text-align: center;
+          }
+    
+          .welcome-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #e74c3c;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+          }
+    
+          .form-container {
+            margin-top: 20px;
+          }
+    
+          .form-container label {
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+          }
+    
+          .form-container input {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            color: #000000;
+          }
+    
+          .form-container input:focus {
+            border-color: #268AF3;
+            box-shadow: 0 0 5px #268AF3;
+          }
+    
+          .form-container button {
+            background-color: #e74c3c;
+            color: #ffffff;
+            font-weight: bold;
+            border: none;
+            padding: 14px 28px;
+            width: 100%;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+          }
+    
+          .form-container button:focus, .form-container button:active {
+            background-color: #c0392b;
+            box-shadow: none;
+          }
+    
+          .form-container button:hover {
+            background-color: #c0392b;
+            color: #ffffff;
+          }
+    
+          .ai-results-box {
+            background-color: #f7f7f7;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            text-align: center;
+          }
+    
+          .ai-results-box h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #e74c3c;
+            font-size: 38px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+          }
+    
+          .accordion-header .accordion-button {
+            margin-bottom: 0;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+          }
+    
+          .accordion-body {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 0;
+          }
+
+          .accordion-body ul {
+            padding-left: 20px; /* Adjust left padding */
+            list-style-type: disc; /* Ensure bullets are visible */
+          }
+          /*.accordion-body li {
+              display: flex;
+              align-items: center; 
+              gap: 10px; 
+              padding: 5px 0; 
+          }*/
+          /*.accordion-body ul {
+            padding-left: 20px;  
+            margin: 0;
+            list-style-type: disc;
+          }*/
+          .accordion-body li {
+              text-align: left;  
+          }
+
+    
+          .footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0; /* Increased padding for a more spacious look */
+            text-align: center;
+            margin-top: 50px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+          }
+    
+          .footer p {
+            margin: 0;
+            font-size: 14px;
+          }
+    
+          .footer a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+          }
+    
+          .footer a:hover {
+            color: #c0392b;
+            text-decoration: underline;
+          }
+    
+          input::placeholder {
+            color: #808080;
+          }
+    
+          .accordion-button, .btn {
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+          }
+    
+          .btn:active, .accordion-button:active {
+            background-color: #e74c3c !important;
+            box-shadow: none !important;
+          }
+    
+          .btn:hover {
+            background-color: #c0392b;
+            color: #ffffff;
+          }
+        </style>
+      </head>
+      <body>
+        <!-- <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+              <img src="./img.png" alt="Health Center Logo">
+              CareConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav> -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+              <img src="./img.png" alt="Health Center Logo">
+              CareConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+              <ul class="navbar-nav me-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                  </li>
+              </ul>
+          </div>
+          
+          </div>
+        </nav>
+    
+        <div class="container">
+          <div class="welcome-box">
+            <h1 class="welcome-text">Your Health Journey Starts Here</h1>
+            <div class="form-container mx-auto" style="max-width: 600px;">
+              <form action="/predict" method="post">
+                <div class="mb-3">
+                  <label for="symptoms" class="form-label">Enter Symptoms:</label>
+                  <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="e.g., itching, skin rash">
+                </div>
+                <button type="submit" class="btn btn-danger btn-lg w-100">Predict</button>
+              </form>
+            </div>
+          </div>
+          {% if predicted_disease %}
+          <div class="ai-results-box">
+            <h2>Health Insights</h2>
+    
+            <div class="accordion mx-auto" id="resultAccordion" style="max-width: 600px;">
+  
+              <!-- Disease -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diseaseCollapse" aria-expanded="false" aria-controls="diseaseCollapse">
+                    Disease
+                  </button>
+                </h2>
+                <div id="diseaseCollapse" class="accordion-collapse collapse" data-bs-parent="#resultAccordion">
+                  <div class="accordion-body">
+                    {{ predicted_disease }}
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Description -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#descriptionCollapse" aria-expanded="false" aria-controls="descriptionCollapse">
+                    Description
+                  </button>
+                </h2>
+                <div id="descriptionCollapse" class="accordion-collapse collapse" data-bs-parent="#resultAccordion">
+                  <div class="accordion-body">
+                    {{ dis_des }}
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Precautions -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#precautionsCollapse" aria-expanded="false" aria-controls="precautionsCollapse">
+                    Precautions
+                  </button>
+                </h2>
+                <div id="precautionsCollapse" class="accordion-collapse collapse" data-bs-parent="#resultAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      {% for precaution in my_precautions %}
+                        <li>{{ precaution }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>                  
+                </div>
+              </div>
+            
+              <!-- Medications -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#medicationsCollapse" aria-expanded="false" aria-controls="medicationsCollapse">
+                    Medications
+                  </button>
+                </h2>
+                <div id="medicationsCollapse" class="accordion-collapse collapse" data-bs-parent="#resultAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      {% for item in medications %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Workouts -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workoutsCollapse" aria-expanded="false" aria-controls="workoutsCollapse">
+                    Workouts
+                  </button>
+                </h2>
+                <div id="workoutsCollapse" class="accordion-collapse collapse" data-bs-parent="#resultAccordion">
+                  <div class="accordion-body">
+                    {{ workout }}
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Diets -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dietsCollapse" aria-expanded="false" aria-controls="dietsCollapse">
+                    Diets
+                  </button>
+                </h2>
+                <div id="dietsCollapse" class="accordion-collapse collapse" data-bs-parent="#resultAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      {% for food in my_diet %}
+                        <li>{{ food }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+            
+            <!--<div class="accordion mx-auto" id="resultAccordion" style="max-width: 600px;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diseaseCollapse" aria-expanded="false" aria-controls="diseaseCollapse">
+                    Disease
+                  </button>
+                </h2>
+                <div id="diseaseCollapse" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    {{ predicted_disease }}
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#descriptionCollapse" aria-expanded="false" aria-controls="descriptionCollapse">
+                    Description
+                  </button>
+                </h2>
+                <div id="descriptionCollapse" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    {{ dis_des }}
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#precautionsCollapse" aria-expanded="false" aria-controls="precautionsCollapse">
+                    Precautions
+                  </button>
+                </h2>
+                <div id="precautionsCollapse" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    <ul>
+                      {% for precaution in my_precautions %}
+                        <li>{{ precaution }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>                  
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#medicationsCollapse" aria-expanded="false" aria-controls="medicationsCollapse">
+                    Medications
+                  </button>
+                </h2>
+                <div id="medicationsCollapse" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    <ul>
+                      {% for item in medications %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workoutsCollapse" aria-expanded="false" aria-controls="workoutsCollapse">
+                    Workouts
+                  </button>
+                </h2>
+                <div id="workoutsCollapse" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    {{ workout }}
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dietsCollapse" aria-expanded="false" aria-controls="dietsCollapse">
+                    Diets
+                  </button>
+                </h2>
+                <div id="dietsCollapse" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    <ul>
+                      {% for food in my_diet %}
+                        <li>{{ food }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>-->
+    
+        <footer class="footer">
+          <div class="container">
+            <p>&copy; 2025 Health Care Center. All Rights Reserved.</p>
+            <p>Visit our <a href="about.html">Learn more!</a></p>
+          </div>
+        </footer>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+      </body>
+    </html>
